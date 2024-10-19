@@ -1,6 +1,6 @@
 const Products = require("../model/products")
 
-const ProductService = {
+class ProductService  {
     addProducts = async (name) => {
         try {
             const existing = await Products.findOne({
