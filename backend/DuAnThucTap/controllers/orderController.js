@@ -78,5 +78,17 @@ class OrdersController {
             res.status(500).json({ status: 500, message: "Có lỗi xảy ra" });
         }
     }
+    OrderDetail = async (req, res) => {      
+        try {
+            const {id} = req.params           
+            const order = await orders.findById(id)
+            res.json({             
+                data: order
+            })          
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ status: 500, message: "Có lỗi xảy ra" });
+        }
+    }
 }
 module.exports = OrdersController;

@@ -8,6 +8,6 @@ router.get('/get-orders', new OrdersController().getAllOrders);
 router.post('/add-order', new OrdersController().AddOrder);
 router.put('/edit-order/:id', new OrdersController().EditOrder);
 router.delete('/delete-order/:id', new OrdersController().DeleteOrder);
-// router.use('/add-newproducts', new ProductsController().AddProducts);
+router.get('/detail-order/:id', new OrdersController().OrderDetail);
 
 module.exports = router;
