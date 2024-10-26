@@ -83,6 +83,12 @@
     color: white;
     font-weight: bold;
 }
+.right_item .btn-checkout:hover {
+    background-color: #f17a92;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+}
 .right_item .policy {
     background-color: #D8EDF6;
     padding: 10px;
