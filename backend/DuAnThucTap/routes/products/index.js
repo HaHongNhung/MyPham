@@ -4,7 +4,7 @@ const express = require('express');
 const { get } = require('mongoose');
 const router = express.Router();
 
-router.use('/get-products', new ProductsController().getAllProducts);
+router.get('/get-products', new ProductsController().getAllProducts);
 router.use('/add-newproducts', new ProductsController().AddProducts);
 
 module.exports = router;

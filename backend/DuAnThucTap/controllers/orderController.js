@@ -7,7 +7,7 @@ class OrdersController {
     getAllOrders = async (req, res) => {
         try {
             const data = await orders.find().populate('user_id');
-            // console.log('data: ', data);
+            console.log('data: ', data);
             res.json({              
                 data: data
             })
