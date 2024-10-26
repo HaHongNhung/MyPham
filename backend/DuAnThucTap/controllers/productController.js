@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const Product = require('../models/Product');
 
 // Tạo mới sản phẩm
@@ -55,7 +55,6 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-=======
 const products = require("../model/products");
 const ProductService = require("../service/ProductService");
 
