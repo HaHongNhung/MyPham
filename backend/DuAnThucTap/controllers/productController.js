@@ -86,4 +86,3 @@ class ProductsController {
 }
 
 module.exports = ProductsController;
->>>>>>> 5b55e41e94c7b74cd798521762230c65610cbc22
