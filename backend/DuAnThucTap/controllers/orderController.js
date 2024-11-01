@@ -1,13 +1,12 @@
-const orders = require("../model/orders");
-const { updateMany } = require("../model/products");
-const users = require("../model/users");
+const orders = require("../models/orders");
+
 // const ProductService = require("../service/ProductService");
 
 class OrdersController {
     getAllOrders = async (req, res) => {
         try {
             const data = await orders.find().populate('user_id');
-            console.log('data: ', data);
+            // console.log('data: ', data);
             res.json({              
                 data: data
             })
@@ -70,18 +69,6 @@ class OrdersController {
         try {
             const {id} = req.params           
             const order = await orders.findByIdAndDelete(id)
-            res.json({             
-                data: order
-            })          
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ status: 500, message: "Có lỗi xảy ra" });
-        }
-    }
-    OrderDetail = async (req, res) => {      
-        try {
-            const {id} = req.params           
-            const order = await orders.findById(id)
             res.json({             
                 data: order
             })          

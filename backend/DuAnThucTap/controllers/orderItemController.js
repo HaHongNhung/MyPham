@@ -1,6 +1,5 @@
-const orderItems = require("../model/orderItems");
-const orders = require("../model/orders");
-const products = require("../model/products");
+const orderItems = require("../models/orderItems");
+
 // const ProductService = require("../service/ProductService");
 
 class OrdersController {
@@ -71,18 +70,6 @@ class OrdersController {
             const orderItem = await orderItems.findByIdAndDelete(id)
             res.json({             
                 data: orderItem
-            })          
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ status: 500, message: "Có lỗi xảy ra" });
-        }
-    }
-    OrderItemDetail = async (req, res) => {      
-        try {
-            const {id} = req.params           
-            const order = await orders.findById(id)
-            res.json({             
-                data: order
             })          
         } catch (error) {
             console.log(error);
