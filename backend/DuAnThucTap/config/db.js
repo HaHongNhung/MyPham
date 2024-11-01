@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-const local = "mongodb+srv://duanmypham:Huy%2A2004@duanmypham.qif6w.mongodb.net/duanmypham";
+dotenv.config(); // Đọc file .env
 
-const connect = async () => {
-    try {
-        await mongoose.connect(local);
-        console.log('Connect success');
-    } catch (error) {
-        console.error('Connection to MongoDB failed:', error);
-    }
-}
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected successfully');
+    console.log(`Connected to database: ${mongoose.connections[0].name}`); // In ra tên DB đã kết nối
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1); // Thoát nếu lỗi
+  }
+};
 
-module.exports = { connect };
+module.exports = connectDB;
