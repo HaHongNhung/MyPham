@@ -7,7 +7,7 @@ class BlogController {
     async createBlog(req, res) {
         try {
             const { title, content } = req.body;
-            const author_id = req.user.id; // Lấy ID người dùng từ token đã giải mã (xác thực)
+            const author_id = req.user.id; 
 
             const newBlog = await BlogService.createBlog({ title, content, author_id });
             res.status(201).json({ message: "Blog đã được đăng thành công", blog: newBlog });
