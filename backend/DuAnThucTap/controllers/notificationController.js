@@ -1,4 +1,4 @@
-const Notification = require('../models/Notification');
+const Notification = require('../models/notification');
 
 class NotificationController {
     createNotification = async (req, res) => {
@@ -27,6 +27,16 @@ class NotificationController {
         }
     }
 
+    getOneNotification = async (req, res) => {
+        try {
+            const notification = await Notification.findById(req.params.id);
+            if (!notification) return res.status(404).json({ message: 'notification not found' });
+            res.json(notification);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
     updateNotification = async (req, res) => {
         const { user_id, message, is_read } = req.body;
         try {
@@ -37,7 +47,7 @@ class NotificationController {
         }
     }
 
-    deleteNotificatio = async (req, res) => {
+    deleteNotification = async (req, res) => {
         try {
             await Notification.findByIdAndDelete(req.params.id);
             res.redirect('/');
