@@ -7,7 +7,6 @@ const blogRoute = require('../routes/blogs/index');
 const authRoute = require('../routes/client/auth/authRoute'); // Route Auth tổng
 const blogRouteClient = require('../routes/client/blogs/blogRoute'); // Route Auth tổng
 
-/* GET home page. */
 router.get('/get', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
