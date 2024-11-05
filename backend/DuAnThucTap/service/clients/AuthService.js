@@ -33,6 +33,11 @@ class AuthService {
 
     return { message: "Đăng nhập thành công", token };
   }
+
+  async logout() {
+   
+    return { message: "Đăng xuất thành công" };
+  }
   // Xử lý logic đăng ký
   async register(userData) {
     const { username, email, password, name, address, phone, role } = userData;
