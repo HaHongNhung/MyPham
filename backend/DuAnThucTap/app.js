@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/users/users');
 var loginRouter = require('./routes/client/auth/authRoute');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users/users');
 const paymentRouter = require('./routes/payments/index');
 const couponRouter = require('./routes/coupons/index');
 const shippingRouter = require('./routes/shipping/index');
