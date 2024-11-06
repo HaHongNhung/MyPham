@@ -15,8 +15,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // ket noi mongodb
-const database = require('./config/db');
-database.connect()
+// const database = require('./config/db');
+const connectDB = require('./config/db');
+connectDB();
 
 app.use(logger('dev'));
 app.use(express.json());
