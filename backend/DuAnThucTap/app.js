@@ -5,11 +5,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+
 var usersRouter = require('./routes/users');
 const categoryRoutes = require('./routes/categorys');
 var brandRouter = require('./routes/brands/index.js');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
+
+var usersRouter = require('./routes/users/users');
+var loginRouter = require('./routes/client/auth/authRoute');
+var usersRouter = require('./routes/users/users');
+const paymentRouter = require('./routes/payments/index');
+const couponRouter = require('./routes/coupons/index');
+const shippingRouter = require('./routes/shipping/index');
+
 var app = express();
 
 // view engine setup
@@ -20,6 +29,7 @@ app.set('view engine', 'hbs');
 const database = require('./config/db');
 database.connect();
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,10 +39,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Khai báo các route
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/api/categories', categoryRoutes);
 app.use('/api/brands', brandRouter);  
 app.use('/api/products', productRoutes);
 app.use('/api/reviews', reviewRoutes);
+
+app.use('/login', loginRouter);
+app.use('/payments', paymentRouter);
+app.use('/coupons', couponRouter);
+app.use('/shipping', shippingRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
