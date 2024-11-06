@@ -1,4 +1,6 @@
-const PaymentService = require('../../services/PaymentService');
+const CouponService = require('../models/Payment');
+
+// const PaymentService = require('../../services/PaymentService');
 
 class PaymentController {
     async getAllPayments(req, res) {

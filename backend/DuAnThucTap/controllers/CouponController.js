@@ -1,4 +1,5 @@
-const CouponService = require('../../services/CouponService');
+const CouponService = require('../models/coupon');
+// const CouponService = require('../../services/CouponService');
 
 class CouponController {
     async getAllCoupons(req, res) {
