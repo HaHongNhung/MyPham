@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const PaymentController = require('../../controllers/Admin/PaymentController');
+const PaymentController = require('../../controllers/PaymentController');
 const paymentController = new PaymentController();
 
 // Route lấy tất cả thanh toán

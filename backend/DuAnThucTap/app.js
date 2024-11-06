@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/users/users');
 var loginRouter = require('./routes/client/auth/authRoute');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users/users');
 const paymentRouter = require('./routes/payments/index');
 const couponRouter = require('./routes/coupons/index');
 const shippingRouter = require('./routes/shipping/index');
@@ -19,8 +19,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // ket noi mongodb
-const database = require('./config/db');
-database.connect()
+// const database = require('./config/db');
+const connectDB = require('./config/db');
+connectDB();
 
 app.use(logger('dev'));
 app.use(express.json());

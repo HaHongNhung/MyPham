@@ -1,4 +1,4 @@
-const PaymentService = require('../../services/PaymentService');
+const PaymentService = require('../service/PaymentService');
 
 class PaymentController {
     async getAllPayments(req, res) {
