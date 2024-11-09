@@ -40,8 +40,8 @@ class NotificationController {
     updateNotification = async (req, res) => {
         const { user_id, message, is_read } = req.body;
         try {
-            await Car.findByIdAndUpdate(req.params.id, { user_id, message, is_read });
-            res.redirect('/');
+            await Notification.findByIdAndUpdate(req.params.id, { user_id, message, is_read });
+            res.redirect('/api/notifications');
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
@@ -50,7 +50,7 @@ class NotificationController {
     deleteNotification = async (req, res) => {
         try {
             await Notification.findByIdAndDelete(req.params.id);
-            res.redirect('/');
+            res.redirect('/api/notifications');
         } catch (error) {
             res.status(400).json({ message: error.message });
         }

@@ -3,8 +3,8 @@ const express = require('express');
 const { get } = require('mongoose');
 const router = express.Router();
 
-router.get('/get-cart', new CartsController().getCart);
-router.post('/add-cart', new CartsController().AddCart);
-router.delete('/delete-cart/:id', new CartsController().DeleteCart);
+router.get('/', new CartsController().getCart);
+router.post('/', new CartsController().AddCart);
+router.delete('/:id', new CartsController().DeleteCart);
 
 module.exports = router;

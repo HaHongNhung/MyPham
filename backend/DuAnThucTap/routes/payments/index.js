@@ -7,7 +7,7 @@ const paymentController = new PaymentController();
 router.get('/', paymentController.getAllPayments);
 
 // Route tạo thanh toán mới
-router.post('/create', paymentController.createPayment);
+router.post('/', paymentController.createPayment);
 
 // Route lấy thông tin thanh toán theo ID
 router.get('/:id', paymentController.getPaymentById);
