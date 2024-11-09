@@ -3,15 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/users/users');
 var loginRouter = require('./routes/client/auth/authRoute');
 var usersRouter = require('./routes/users/users');
-const paymentRouter = require('./routes/payments/index');
-const couponRouter = require('./routes/coupons/index');
-const shippingRouter = require('./routes/shipping/index');
+// const paymentRouter = require('./routes/payments/index');
+// const couponRouter = require('./routes/coupons/index');
+// const shippingRouter = require('./routes/shipping/index');
 var app = express();
 
 // view engine setup
@@ -29,16 +30,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Khai báo các route
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
-app.use('/payments', paymentRouter);
-app.use('/coupons', couponRouter);
-app.use('/shipping', shippingRouter);
-
+// app.use('/payments', paymentRouter);
+// app.use('/coupons', couponRouter);
+// app.use('/shipping', shippingRouter);
+// 
 
 const notificationRoutes = require('./routes/notifications/index');
-app.use('/notifications', notificationRoutes);
+app.use(bodyParser.json());
+app.use('/api/notifications', notificationRoutes);
 const live_chatRoutes = require('./routes/live_chat/index');
 app.use('/api/live_chats', live_chatRoutes);
 const live_chat_detailRoutes = require('./routes/live_chat_detail/index');
@@ -53,7 +56,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
