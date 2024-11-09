@@ -36,6 +36,16 @@ app.use('/payments', paymentRouter);
 app.use('/coupons', couponRouter);
 app.use('/shipping', shippingRouter);
 
+
+const notificationRoutes = require('./routes/notifications/index');
+app.use('/notifications', notificationRoutes);
+const live_chatRoutes = require('./routes/live_chat/index');
+app.use('/api/live_chats', live_chatRoutes);
+const live_chat_detailRoutes = require('./routes/live_chat_detail/index');
+app.use('/api/live_chat_details', live_chat_detailRoutes);
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
