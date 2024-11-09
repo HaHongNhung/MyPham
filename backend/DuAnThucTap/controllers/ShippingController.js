@@ -1,4 +1,6 @@
-const ShippingService = require('../../services/ShippingService');
+const CouponService = require('../models/shipping');
+
+// const ShippingService = require('../../services/ShippingService');
 
 class ShippingController {
     async getAllShippings(req, res) {
