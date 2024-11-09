@@ -8,8 +8,8 @@ router.get('/get', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use("/api/v1/orders", orderRoute);
-router.use("/api/v1/orderItems", orderItemRoute);
-router.use("/api/v1/carts", cartRoute);
+router.use("/api/orders", orderRoute);
+router.use("/api/orderItems", orderItemRoute);
+router.use("/api/carts", cartRoute);
 
 module.exports = router;
