@@ -16,7 +16,7 @@ const usersController = new UsersController();
 router.get('/', usersController.getAllUsers);
 
 // Route đăng ký người dùng mới
-router.post('/register', usersController.registerUser);
+router.post('/create', usersController.registerUser);
 
 // Route lấy thông tin người dùng theo ID
 router.get('/:id', usersController.getUserById);
