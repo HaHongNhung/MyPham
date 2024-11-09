@@ -38,7 +38,24 @@ app.use('/api/live_chats', live_chatRoutes);
 const live_chat_detailRoutes = require('./routes/live_chat_detail/index');
 app.use(bodyParser.json());
 app.use('/api/live_chat_details', live_chat_detailRoutes);
+const userRoute = require('./routes/users/users');
+const blogRoute = require('./routes/blogs/index');
+const authRoute = require('./routes/client/auth/authRoute'); // Route Auth tổng
+const blogRouteClient = require('./routes/client/blogs/blogRoute'); // Route Auth tổng
+const orderRoute = require('./routes/orders/index');
+const orderItemRoute = require('./routes/orderItems/index');
+const cartRoute = require('./routes/carts/index')
+// Đăng ký các route API khác
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/blogs", blogRoute);
 
+// Đăng ký route cho Auth (login, register, quên mật khẩu)
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/blog", blogRouteClient);
+
+app.use("/api/v1/orders", orderRoute);
+app.use("/api/v1/orderItems", orderItemRoute);
+app.use("/api/v1/carts", cartRoute);
 
 const PORT = process.env.PORT || 3004; // Thay đổi 5000 thành 3000 hoặc cổng khác
 
