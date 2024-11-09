@@ -1,4 +1,5 @@
 const orderItems = require("../models/orderItems");
+const Product = require("../models/Product"); // Đảm bảo file có tên chính xác
 
 // const ProductService = require("../service/ProductService");
 
@@ -6,7 +7,7 @@ class OrdersController {
     getAllOrderItems = async (req, res) => {
         try {
             const data = await orderItems.find().populate('order_id').populate('product_id');
-            // console.log('data: ', data);
+            // console.log(data);
             res.json({              
                 data: data
             })

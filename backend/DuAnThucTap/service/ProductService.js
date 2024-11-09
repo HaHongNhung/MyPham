@@ -1,45 +1,72 @@
-const Products = require("../model/products")
+// service/productService.js
+const Product = require('../models/Product');
 
-class ProductService  {
-    addProducts = async (name) => {
+class ProductService {
+    // Lấy tất cả sản phẩm
+    async getAllProducts() {
         try {
-            const existing = await Products.findOne({
-                name: name
-            });
-            // console.log(existingShowtime);
-            if (existing) {
-                return {
-                    status: -2,
-                    message: "Thể loại đã tồn tại",
-                    data: null
-                };
-            }
-            const newProducts = new Category({
-                // image: urlsImage,
-                name: name
-            });
-            const result = await newCategory.save();
-            if (result) {
-                return {
-                    status: 200,
-                    message: "Thêm thành công",
-                    data: result
-                };
-            } else {
-                return {
-                    status: 400,
-                    message: "Lỗi, thêm không thành công",
-                    data: []
-                };
-            }
+            const products = await Product.find().populate('category_id brand_id'); // Thêm thông tin Category và Brand
+            return products;
         } catch (error) {
-            console.error('Error:', error);
-            return {
-                status: -1,
-                message: 'Internal server error',
-                data: null
-            };
+            throw new Error('Error retrieving products: ' + error.message);
+        }
+    }
+
+    // Lấy sản phẩm theo ID
+    async getProductById(id) {
+        try {
+            const product = await Product.findById(id).populate('category_id brand_id');
+            if (!product) {
+                throw new Error('Product not found');
+            }
+            return product;
+        } catch (error) {
+            throw new Error('Error retrieving product: ' + error.message);
+        }
+    }
+
+    // Tạo mới sản phẩm
+    async createProduct(data) {
+        try {
+            const { name, description, price, stock, category_id, brand_id, image } = data;
+            const product = new Product({ name, description, price, stock, category_id, brand_id, image });
+            await product.save();
+            return product;
+        } catch (error) {
+            throw new Error('Error creating product: ' + error.message);
+        }
+    }
+
+    // Cập nhật sản phẩm
+    async updateProduct(id, data) {
+        try {
+            const { name, description, price, stock, category_id, brand_id, image } = data;
+            const product = await Product.findByIdAndUpdate(
+                id,
+                { name, description, price, stock, category_id, brand_id, image },
+                { new: true }
+            );
+            if (!product) {
+                throw new Error('Product not found');
+            }
+            return product;
+        } catch (error) {
+            throw new Error('Error updating product: ' + error.message);
+        }
+    }
+
+    // Xóa sản phẩm
+    async deleteProduct(id) {
+        try {
+            const product = await Product.findByIdAndDelete(id);
+            if (!product) {
+                throw new Error('Product not found');
+            }
+            return { message: 'Product deleted successfully', product };
+        } catch (error) {
+            throw new Error('Error deleting product: ' + error.message);
         }
     }
 }
-module.exports = ProductService;
+
+module.exports = new ProductService();

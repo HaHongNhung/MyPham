@@ -1,6 +1,10 @@
 // const express = require('express');
 // const router = express.Router();
+<<<<<<< HEAD
 // const PaymentController = require('../../controllers/Admin/PaymentController');
+=======
+// const PaymentController = require('../../controllers/PaymentController');
+>>>>>>> 41fb9d2ffca7da221e5fa4815e5f68806b07961d
 // const paymentController = new PaymentController();
 
 // // Route lấy tất cả thanh toán

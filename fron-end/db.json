@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "name": "Sản phẩm 1  update",
+      "price": "100",
+      "description": "Mô tả 1",
+      "id": 1
+    },
+    {
+      "name": "Sản phẩm 2 update 1",
+      "price": "200",
+      "description": "Mô tả 2",
+      "id": 2
+    },
+    {
+      "name": "Sản phẩm 3 update",
+      "price": "300",
+      "description": "mô tả 3",
+      "id": 3
+    },
+    {
+      "name": "12313",
+      "price": "123213",
+      "id": 4
+    }
+  ]
+}
