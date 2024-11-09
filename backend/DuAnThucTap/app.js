@@ -3,22 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const categoryRoutes = require('./routes/categorys');
-var brandRouter = require('./routes/brands/index.js');
-const productRoutes = require('./routes/products');
-const reviewRoutes = require('./routes/reviews');
+
+var usersRouter = require('./routes/users/users');
+var loginRouter = require('./routes/client/auth/authRoute');
+var usersRouter = require('./routes/users/users');
+// const paymentRouter = require('./routes/payments/index');
+// const couponRouter = require('./routes/coupons/index');
+// const shippingRouter = require('./routes/shipping/index');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// Kết nối MongoDB
-const database = require('./config/db');
-database.connect();
+// ket noi mongodb
+// const database = require('./config/db');
+const connectDB = require('./config/db');
+connectDB();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,11 +33,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Khai báo các route
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/brands', brandRouter);  
-app.use('/api/products', productRoutes);
-app.use('/api/reviews', reviewRoutes);
-  // catch 404 and forward to error handler
+app.use('/login', loginRouter);
+// app.use('/payments', paymentRouter);
+// app.use('/coupons', couponRouter);
+// app.use('/shipping', shippingRouter);
+// 
+
+const notificationRoutes = require('./routes/notifications/index');
+app.use(bodyParser.json());
+app.use('/api/notifications', notificationRoutes);
+const live_chatRoutes = require('./routes/live_chat/index');
+app.use('/api/live_chats', live_chatRoutes);
+const live_chat_detailRoutes = require('./routes/live_chat_detail/index');
+app.use('/api/live_chat_details', live_chat_detailRoutes);
+
+
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
